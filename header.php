@@ -14,9 +14,10 @@
            ~                   ~   
                 还请大佬多多指教啦~
 -->
-<html>
+<html <?php language_attributes();?>> 
   <head>
-    <title><?php wp_title('-',true,'right'); ?></title>
+    <!-- <title></*?php wp_title('-',true,'right'); ?>*/</title> -->
+    <?php _e(wp_head()); ?>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="robots" content="index,follow">

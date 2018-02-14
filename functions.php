@@ -287,3 +287,11 @@ function sig_allowed_html_tags_in_comments(){
    );
 }
 add_action('init','sig_allowed_html_tags_in_comments',10);
+
+/**
+        *新的 WordPress 网页标题设置方法
+*/
+function Bing_add_theme_support_title(){
+    add_theme_support('title-tag' );
+}
+add_action( 'after_setup_theme', 'Bing_add_theme_support_title' );

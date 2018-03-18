@@ -17,10 +17,10 @@
                             <div class="kratos-post-meta text-center">
                                 <span>
                                 <i class="fa fa-calendar"></i> <?php echo get_the_date(); ?>
-                                <i class="fa fa-commenting-o"></i> <?php comments_number('0','1','%'); ?>条评论
-                                <i class="fa fa-eye"></i> <?php echo kratos_get_post_views();?>次阅读  
+                                <i class="fa fa-commenting-o"></i> <?php comments_number('0','1','%'); ?><?php _e('条评论','dmeng');?>
+                                <i class="fa fa-eye"></i> <?php echo kratos_get_post_views();?><?php _e('次阅读 ','dmeng');?> 
                                 <span class="hd">
-                                <i class="fa fa-thumbs-o-up"></i> <?php if(get_post_meta($post->ID,'love',true)){echo get_post_meta($post->ID,'love',true);}else{echo '0'; }?>人点赞
+                                <i class="fa fa-thumbs-o-up"></i> <?php if(get_post_meta($post->ID,'love',true)){echo get_post_meta($post->ID,'love',true);}else{echo '0'; }?><?php _e('人点赞','dmeng');?>
                                 <i class="fa fa-user"></i> <?php the_author(); ?>
                                 </span>
                                 </span>
@@ -29,12 +29,17 @@
                         <div class="kratos-post-content">
                         <?php the_content(); ?>
                         </div>
+                        <?php if(kratos_option('post_cc')){ ?>
+                        <div class="kratos-copyright text-center clearfix">
+                            <?php _e('<h5>本作品采用 <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>','dmeng');?>
+                        </div>
+                        <?php } ?>
                         <footer class="kratos-entry-footer clearfix">
                             <div class="post-like-donate text-center clearfix" id="post-like-donate">
-                            <?php if(kratos_option('post_like_donate')) echo '<a href="javascript:;" class="Donate"><i class="fa fa-bitcoin"></i> 打赏</a>'; ?>
-                               <a href="javascript:;" id="btn" data-action="love" data-id="<?php the_ID(); ?>" class="Love <?php if(isset($_COOKIE['love_'.$post->ID])) echo 'done';?>" ><i class="fa fa-thumbs-o-up"></i> 点赞</a>
+                            <?php if(kratos_option('post_like_donate')) _e('<a href="javascript:;" class="Donate"><i class="fa fa-bitcoin"></i> 打赏</a>','dmeng'); ?>
+                               <a href="javascript:;" id="btn" data-action="love" data-id="<?php the_ID(); ?>" class="Love <?php if(isset($_COOKIE['love_'.$post->ID])) echo 'done';?>" ><i class="fa fa-thumbs-o-up"></i> <?php _e('点赞','dmeng');?></a>
                             <?php if(kratos_option('post_share')) {
-                                echo '<a href="javascript:;"  class="Share" ><i class="fa fa-share-alt"></i> 分享</a>';
+                                _e('<a href="javascript:;"  class="Share" ><i class="fa fa-share-alt"></i> 分享</a>','dmeng') ;
                                 require_once( get_template_directory().'/inc/share.php');
                             } ?>
                             </div>
@@ -44,29 +49,23 @@
                                 <?php if(get_the_tags()){the_tags('',' ','');}else{echo '<a>No Tag</a>';}?>
                                 </div>
                                 <div class="pull-date">
-                                <span>最后编辑：<?php $d=strtotime($post->post_modified);echo date('Y年m月d日',$d);?></span>
+                                <span><?php _e('最后编辑','dmeng');?>：<?php $d=strtotime($post->post_modified);_e( date('Y年m月d日',$d),'dmeng');?></span>
                                 </div>
                             </div>
                         </footer>
                     </div>
-                    <?php if(kratos_option('post_cc')){ ?>
-                    <div class="kratos-hentry kratos-copyright text-center clearfix">
-                        <img alt="知识共享许可协议" src="<?php echo get_template_directory_uri(); ?>/images/licenses.png">
-                        <h5>本作品采用 <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
-                    </div>
-                    <?php } ?>
                     <nav class="navigation post-navigation clearfix" role="navigation">
                         <?php
                         $prev_post = get_previous_post(TRUE);
                         if(!empty($prev_post)){ ?>
                         <div class="nav-previous clearfix">
-                            <a title="<?php echo $prev_post->post_title;?>" href="<?php echo get_permalink($prev_post->ID); ?>">&lt; 上一篇</a>
+                            <a title="<?php echo $prev_post->post_title;?>" href="<?php echo get_permalink($prev_post->ID); ?>">&lt; <?php _e('上一篇','dmeng');?></a>
                         </div>
                         <?php }
                         $next_post = get_next_post(TRUE);
                         if(!empty($next_post)){ ?>
                         <div class="nav-next">
-                            <a title="<?php echo $next_post->post_title; ?>" href="<?php echo get_permalink($next_post->ID); ?>">下一篇 &gt;</a>
+                            <a title="<?php echo $next_post->post_title; ?>" href="<?php echo get_permalink($next_post->ID); ?>"><?php _e('下一篇 ','dmeng');?>&gt;</a>
                         </div>
                         <?php } ?>
                     </nav>

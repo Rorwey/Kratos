@@ -1,29 +1,28 @@
 <?php
-
 function success($atts,$content=null,$code=""){
     $return = '<div class="alert alert-success">';
-    $return .= $content;
+    $return .= do_shortcode($content);
     $return .= '</div>';
     return $return;
 }
 add_shortcode('success','success');
 function info($atts,$content=null,$code=""){
     $return = '<div class="alert alert-info">';
-    $return .= $content;
+    $return .= do_shortcode($content);
     $return .= '</div>';
     return $return;
 }
 add_shortcode('info','info');
 function warning($atts,$content=null,$code=""){
     $return = '<div class="alert alert-warning">';
-    $return .= $content;
+    $return .= do_shortcode($content);
     $return .= '</div>';
     return $return;
 }
 add_shortcode('warning','warning');
 function danger($atts,$content=null,$code=""){
     $return = '<div class="alert alert-danger">';
-    $return .= $content;
+    $return .= do_shortcode($content);
     $return .= '</div>';
     return $return;
 }
@@ -82,7 +81,7 @@ function xcollapse($atts,$content=null,$code=""){
     $return = '<div class="xControl"><div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><h5>';
     $return .= $title;
     $return .= '</h5></div><div class="xContent"><div class="inner">';
-    $return .= $content;
+    $return .= do_shortcode($content);
     $return .= '</div></div></div>';
     return $return;
 }
@@ -92,23 +91,22 @@ function hide($atts,$content=null,$code=""){
     global $current_user;
     get_currentuserinfo();
     if($current_user->ID) $email = $current_user->user_email;
-    $ereg = "^[_\.a-z0-9]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,5}$";
     if($reply_to_this=='true'){
-        if(eregi($ereg,$email)){
+        if($email){
             global $wpdb;
             global $id;
             $comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_author_email = '".$email."' and comment_post_id='".$id."'and comment_approved = '1'");
             }
-        if(!$comments) $content = '<div class="hide_notice">抱歉，只有<a href="'.wp_login_url().'?redirect_to='.home_url(add_query_arg(array())).'" rel="nofollow">登录</a>并在本文发表评论才能阅读隐藏内容</div>';
+        if(!$comments) $content = '<div class="hide_notice">抱歉，只有<a href="'.wp_login_url(get_permalink()).'" rel="nofollow">登录</a>并在本文发表评论才能阅读隐藏内容</div>';
     }else{
-        if(eregi($ereg,$email)){
+        if($email){
             global $wpdb;
             global $id;
             $comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_author_email = '".$email."' and comment_approved = '1'");
-		}
-        if(!$comments) $content = '<div class="hide_notice">抱歉，只有<a href="'.wp_login_url().'?redirect_to='.home_url(add_query_arg(array())).'" rel="nofollow">登录</a>并在本站任一文章发表评论才能阅读隐藏内容</div>';
+        }
+        if(!$comments) $content = '<div class="hide_notice">抱歉，只有<a href="'.wp_login_url(get_permalink()).'" rel="nofollow">登录</a>并在本站任一文章发表评论才能阅读隐藏内容</div>';
     }
-	if($comments) $content = '<div class="unhide"><div class="info">以下为隐藏内容：</div>'.$content.'</div>';
+    if($comments) $content = '<div class="unhide"><div class="info">以下为隐藏内容：</div>'.$content.'</div>';
     return $content;
 }
 add_shortcode('hide','hide');
@@ -117,7 +115,7 @@ function successbox($atts,$content=null,$code=""){
     $return = '<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title">';
     $return .= $title;
     $return .= '</h3></div><div class="panel-body">';
-    $return .= $content;
+    $return .= do_shortcode($content);
     $return .= '</div></div>';
     return $return;
 }
@@ -127,7 +125,7 @@ function infobox($atts,$content=null,$code=""){
     $return = '<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">';
     $return .= $title;
     $return .= '</h3></div><div class="panel-body">';
-    $return .= $content;
+    $return .= do_shortcode($content);
     $return .= '</div></div>';
     return $return;
 }
@@ -137,7 +135,7 @@ function warningbox($atts,$content=null,$code=""){
     $return = '<div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title">';
     $return .= $title;
     $return .= '</h3></div><div class="panel-body">';
-    $return .= $content;
+    $return .= do_shortcode($content);
     $return .= '</div></div>';
     return $return;
 }
@@ -147,7 +145,7 @@ function dangerbox($atts,$content=null,$code=""){
     $return = '<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title">';
     $return .= $title;
     $return .= '</h3></div><div class="panel-body">';
-    $return .= $content;
+    $return .= do_shortcode($content);
     $return .= '</div></div>';
     return $return;
 }
@@ -287,7 +285,7 @@ function fa_get_wpsmiliestrans(){
     global $wpsmiliestrans;
     $wpsmilies = array_unique($wpsmiliestrans);
     foreach($wpsmilies as $alt => $src_path){
-		$traimgna = substr($alt,1,-1);
+        $traimgna = substr($alt,1,-1);
         $output .= '<a class="add-smily" data-smilies="'.$alt.'"><img src="'.get_bloginfo('template_directory').'/images/smilies/'.$traimgna.'.png"></a>';
     }
     return $output;

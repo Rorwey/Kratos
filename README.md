@@ -1,4 +1,4 @@
-# Kratos(Modified)
+# Kratos(M)
 
 This is a modified version of Kratos2.5.8. For the original version, please visit [https://github.com/Vtrois/Kratos](https://github.com/Vtrois/Kratos).
 
@@ -6,31 +6,12 @@ DEMO：[https://www.fczbl.vip/787.html](https://www.fczbl.vip/787.html)
 
 Kratos: A clean, simple and responsive blog theme of WordPress, based on [Bootstrap](https://github.com/twbs/bootstrap) and [Font Awesome](https://github.com/FortAwesome/Font-Awesome). Created and maintained by Vtrois. Stay up to date with the latest release and announcements on [Bulletin Board](https://github.com/Vtrois/Kratos/issues). 
 
-![Kratos Demo](http://i2.bvimg.com/1949/649bfde164c5c8b1.png) 
+![Kratos Demo](https://www.fczbl.vip/wp-content/uploads/kratos.png)
 
 ## Changes
-![Kratos Demo](https://www.fczbl.vip/wp-content/uploads/kratos2.jpg)
-```
-二次元风格
-添加博客小人spig
-无图片的文章特色图片随机化（\images\thumb\下的20张图片）
-置顶文章加上了文字和图标标记
-在分享按钮中添加分享到QQ空间选项
-评论区评论嵌套样式修改（参考Ravenclaw主题样式）
-更换表情面板为DIYgay的OwO，支持更多表情
-底部社交组件中添加EMAIL
-底部添加建站时间统计
-修改鼠标指针样式
-添加复制站点内容时的弹窗提示
-添加了登录/注册页面样式
-添加友链模板
-支持文章内容的+展开/-收缩
-后台HTML编辑器上的更多按钮
-后台用户页面显示用户最近一次登录IP
+![Kratos Demo](https://www.fczbl.vip/wp-content/uploads/kratos_demo.jpg)
 
-还有很多 这里就不写了
-全部信息请前往https://www.fczbl.vip/787.html查看
-```
+Please visit [https://www.fczbl.vip/787.html](https://www.fczbl.vip/787.html) .
 
 ## Structure
 Within the download you'll find the following directories and files. You'll see something like this :point_down:
@@ -38,19 +19,14 @@ Within the download you'll find the following directories and files. You'll see 
 ```
 kratos/
 ├── css/
-│   ├── animate.min.css
-│   ├── bootstrap.min.css
 │   ├── customlogin.css
 │   ├── font-awesome.min.css
-│   ├── kratos.min.css
-│   ├── layer.min.css
-│   └── superfish.min.css
+│   └── kratos.min.css
 ├── fonts/
 │   ├── fontawesome-webfont.eot
 │   ├── fontawesome-webfont.svg
 │   ├── fontawesome-webfont.ttf
-│   ├── fontawesome-webfont.woff
-│   └── fontawesome-webfont.woff2
+│   └── fontawesome-webfont.woff
 ├── images/
 │   ├── options/
 │   │   └── (has some options pic)
@@ -104,6 +80,8 @@ kratos/
 │   │   │   ├── media-uploader.js
 │   │   │   └── options-custom.js
 │   │   └── options-framework.php
+│   ├── avatars.php
+│   ├── core.php
 │   ├── imgcfg.php
 │   ├── logincfg.php
 │   ├── OwO.json
@@ -114,13 +92,15 @@ kratos/
 │   └── widgets.php
 ├── js/
 │   ├── bootstrap.min.js
-│   ├── jquery.easing.js
 │   ├── jquery.min.js
 │   ├── kratos.js
 │   ├── layer.min.js
 │   ├── OwO.min.js
-│   ├── spig.js
-│   └── superfish.js
+│   └── spig.js
+├── pages/
+│   ├── page-archives.php
+│   ├── page-link.php
+│   └── page-notitle.php
 ├── 404.php
 ├── comments.php
 ├── content.php
@@ -131,8 +111,6 @@ kratos/
 ├── index.php
 ├── options.php
 ├── page.php
-├── page-link.php
-├── page-notitle.php
 ├── screenshot.png
 ├── single.php
 └── style.css
